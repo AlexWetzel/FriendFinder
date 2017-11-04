@@ -1,8 +1,7 @@
 var path = require("path");
 
 module.exports = function(app) {
-//html routes
-//---------------------------------------------------------
+	//HTML routes
 	app.get("/", function(req, res) {
 		res.sendFile(path.join(__dirname, "../../app/public/home.html"));
 	});

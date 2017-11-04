@@ -16,38 +16,33 @@ module.exports = function(app) {
 	      }
 	    }
 
-
-		// console.log(req.body)
-		// console.log(req.body.scores)
 		var userScores = req.body.scores
-		var bestScore = 40;
-		var match = 0;
+		//bestScore defaults to a score above what is possible
+		var bestScore = 41;
+		//Match will be the index of the best match of the friends in the API
+		//Defaults to -1
+		var match = -1;
 		console.log(userScores);
 
 		//loop through the friends list
 		for (var i = 0; i < friends.length; i++) {
 			var matchScore = 0;
-
+			//compare individual answer scores directly and get the difference for each
 			for (var j = 0; j < 10; j++) {
 				var diff = parseInt(friends[i].scores[j]) - parseInt(userScores[j]);
+				//add each answer difference together to get a total score
 				matchScore += Math.abs(diff);
-				console.log(matchScore);
 			}
-
-			console.log(matchScore, bestScore);
-
+			//The best score will be the lowest of all the match scores
 			if (matchScore < bestScore) {
 				bestScore = matchScore;
+				//Gets the index of the friend
 				match = i;
 			}
 		}
-		//compare individual answer scores directly and get the difference for each
-		//add each answer difference together to get a total score
-		//store the first position index in a variable "match"
-		//
-
-
+		//Sends the matched friend's data to the web page
 		res.json(friends[match]);
-		// friends.push(req.body)
+		//Adds the user's info to the friends API
+		friends.push(req.body)
 	});
 };
