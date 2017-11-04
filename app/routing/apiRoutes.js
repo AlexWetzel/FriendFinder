@@ -1,5 +1,5 @@
 var friends = require("../data/friends.js");
-var reset = friends;
+var reset = require("../data/default.js");
 
 module.exports = function(app) {
 	//API routes
@@ -23,8 +23,6 @@ module.exports = function(app) {
 		//Match will be the index of the best match of the friends in the API
 		//Defaults to -1
 		var match = -1;
-		console.log(userScores);
-
 		//loop through the friends list
 		for (var i = 0; i < friends.length; i++) {
 			var matchScore = 0;
