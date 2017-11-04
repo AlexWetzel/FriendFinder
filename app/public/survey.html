@@ -129,8 +129,8 @@
 
 		<hr>
 
-		<a href="/api/tables">API Table Link</a> | 
-		<a href="/api/waitlist">API Wait List</a>
+		<a href="/api">API Table Link</a> | 
+		<a href="#" id="clear">Clear Table</a>
 	<div>
 
 	<div id="friendModal" class="modal fade" role="dialog">
@@ -179,5 +179,17 @@
 
 		})
 	});
+	//Function to reset the API
+    $("#clear").on("click", function() {
+      alert("Clearing...");
+      
+      var currentURL = window.location.origin;
+     
+      $.ajax({ url: currentURL + "/api/clear", method: "POST" });
+
+      // Refresh the page after data is cleared
+      location.reload();
+
+    });
 
 </script>

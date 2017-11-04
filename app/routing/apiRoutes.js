@@ -1,4 +1,5 @@
 var friends = require("../data/friends.js");
+var reset = friends;
 
 module.exports = function(app) {
 	//API routes
@@ -44,5 +45,9 @@ module.exports = function(app) {
 		res.json(friends[match]);
 		//Adds the user's info to the friends API
 		friends.push(req.body)
+	});
+	//Resets the API to the default state
+	app.post("/api/clear", function() {	    
+	    friends = reset;
 	});
 };
